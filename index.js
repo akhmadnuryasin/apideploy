@@ -1,7 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
-const privateKey = fs.readFileSync('/home/c331dsx4902/apideploy/private_key.pem', 'utf8');
+const privateKey = fs.readFileSync('/home/c331dsx4902/apideploy/private_key.json', 'utf8');
 
 
 const app = express();
