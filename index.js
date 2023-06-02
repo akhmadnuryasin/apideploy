@@ -1,7 +1,9 @@
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
-const app = express();
-const PORT = 3000;
 
+const app = express();
+const PORT = 443;
 // Middleware to parse JSON requests
 app.use(express.json());
 
@@ -171,7 +173,15 @@ app.get('/typecoffeedrink/:id', (req, res) => {
   }
 });
 
+// Create HTTPS server
+const options = {
+  key: fs.readFileSync('/path/to/private_key.pem'),
+  cert: fs.readFileSync('/path/to/certificate.pem')
+};
+
+const server = https.createServer(options, app);
+
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
